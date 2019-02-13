@@ -7,8 +7,7 @@ using UnityEngine;
 /// </summary>
 public class CharacterChanger : MonoBehaviour
 {
-    [SerializeField]
-    GameObject[] prefabCharacters = new GameObject[4];
+    List<GameObject> prefabCharacters = new List<GameObject>();
 
     // need for location of new character
     GameObject currentCharacter;
@@ -21,6 +20,12 @@ public class CharacterChanger : MonoBehaviour
     /// </summary>
     void Start()
     {
+        //populate prefab character from a folder of prefabs instead instead of in inspector
+        prefabCharacters.Add((GameObject)Resources.Load(@"prefabs\Character0"));
+        prefabCharacters.Add((GameObject)Resources.Load(@"prefabs\Character1"));
+        prefabCharacters.Add((GameObject)Resources.Load(@"prefabs\Character2"));
+        prefabCharacters.Add((GameObject)Resources.Load(@"prefabs\Character3"));
+
         currentCharacter = Instantiate<GameObject>(
             prefabCharacters[0], Vector3.zero,
             Quaternion.identity);
